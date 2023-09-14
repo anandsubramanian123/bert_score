@@ -95,6 +95,7 @@ def score(
         num_layers = model2layers[model_type]
 
     tokenizer = get_tokenizer(model_type, use_fast_tokenizer)
+    tokenizer.model_max_length = 512
     model = get_model(model_type, num_layers, all_layers)
     if device is None:
         device = "cuda" if torch.cuda.is_available() else "cpu"
