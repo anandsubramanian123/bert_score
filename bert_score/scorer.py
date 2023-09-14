@@ -95,6 +95,8 @@ class BERTScorer:
         # Building model and tokenizer
         self._use_fast_tokenizer = use_fast_tokenizer
         self._tokenizer = get_tokenizer(self.model_type, self._use_fast_tokenizer)
+        # hotfix to compare with biomedical bert models which have a surprisingly high tokenizer max length
+        self._tokenizer.model_max_length = 512
         self._model = get_model(self.model_type, self.num_layers, self.all_layers)
         self._model.to(self.device)
 
